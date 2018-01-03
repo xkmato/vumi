@@ -98,6 +98,7 @@ class DmarkUssdTransport(HttpRpcTransport):
     def session_event_for_transaction(self, transaction_id):
         # XXX: There is currently no way to detect when the user closes
         #      the session (i.e. TransportUserMessage.SESSION_CLOSE)
+        self.setup_transport()
         session_id = transaction_id
         session = yield self.session_manager.load_session(transaction_id)
         if session:
